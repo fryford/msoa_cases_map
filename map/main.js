@@ -16,18 +16,18 @@ function ready(error, featureService /*geogbound, geog*/) {
 	console.log(featureService);
 
 	var data = featureService.map(function(feature) {
-		if(feature.wk_36 == "-99") {
-			feature.wk_36=0;
+		if(feature.latest_7_days == "-99") {
+			feature.latest_7_days=0;
 		}
 		return {
 			areacd: feature.msoa11_cd,
 			areanm: feature.msoa11_hclnm,
 			areanmhc: feature.msoa11_hclnm,
-			cases: feature.wk_36,
-			casesMar: feature.wk_36,
-			casesApr: feature.wk_36,
-			casesMay: feature.wk_36,
-			casesJune: feature.wk_36
+			cases: feature.latest_7_days,
+			casesMar: feature.latest_7_days,
+			casesApr: feature.latest_7_days,
+			casesMay: feature.latest_7_days,
+			casesJune: feature.latest_7_days
 
 		};
 	});
