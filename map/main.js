@@ -13,21 +13,27 @@ function ready(error, featureService /*geogbound, geog*/) {
 		return;
 	}
 
+	if ('latest_7_days' in featureService[0]) {
+		casesfield = 'latest_7_days';
+	} else {
+		casesfield = Object.keys(featureService[0])[Object.keys(featureService[0]).length-1];
+	}
+
 	console.log(featureService);
 
 	var data = featureService.map(function(feature) {
-		if(feature.latest_7_days == "-99") {
-			feature.latest_7_days=0;
+		if(feature[casesfield] == "-99") {
+			feature[casesfield]=0;
 		}
 		return {
 			areacd: feature.msoa11_cd,
 			areanm: feature.msoa11_hclnm,
 			areanmhc: feature.msoa11_hclnm,
-			cases: feature.latest_7_days,
-			casesMar: feature.latest_7_days,
-			casesApr: feature.latest_7_days,
-			casesMay: feature.latest_7_days,
-			casesJune: feature.latest_7_days
+			cases: feature[casesfield],
+			casesMar: feature[casesfield],
+			casesApr: feature[casesfield],
+			casesMay: feature[casesfield],
+			casesJune: feature[casesfield]
 
 		};
 	});
