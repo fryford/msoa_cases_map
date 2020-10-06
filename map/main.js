@@ -163,19 +163,20 @@ function ready(error, featureService /*geogbound, geog*/) {
 				paint: {
 					'circle-radius':
             ['interpolate', ['linear'], ['zoom'],
-              4, ['case', ['!=', ['feature-state', 'casesPI'], null], ['/', ['feature-state', 'casesPI'], 0.5], 1],
-              8, ['case', ['!=', ['feature-state', 'casesPI'], null], ['/', ['feature-state', 'casesPI'], 0.5], 1],
-              16, ['case', ['!=', ['feature-state', 'casesPI'], null], ['/', ['feature-state', 'casesPI'], 0.05], 1]
+              4, ['case', ['!=', ['feature-state', 'casesPI'], null], ['/', ['feature-state', 'casesPI'], 0.9], 1],
+              8, ['case', ['!=', ['feature-state', 'casesPI'], null], ['/', ['feature-state', 'casesPI'], 0.7], 1],
+              16, ['case', ['!=', ['feature-state', 'casesPI'], null], ['/', ['feature-state', 'casesPI'], 0.09], 1]
             ],
-					"circle-opacity": 0.9,
+					"circle-opacity": 0.7,
 					'circle-color':
             ['case',
               ['!=', ['feature-state', 'casesPI'], null],
               [
                 'interpolate', ['linear'],
                 ['feature-state', 'cases'],
-                0, '#F66068',
-                maxvalue, '#f3303a'
+                0, '#ef6548',
+								(maxvalue/10), '#d7301f',
+                maxvalue, '#990000'
               ],
               '#FFFFFF'
             ]
@@ -194,14 +195,25 @@ function ready(error, featureService /*geogbound, geog*/) {
 				paint: {
 					'circle-radius':
             ['interpolate', ['linear'], ['zoom'],
-              4, ['case', ['!=', ['feature-state', 'casesPI'], null], ['/', ['feature-state', 'casesPI'], 0.5], 1],
-              8, ['case', ['!=', ['feature-state', 'casesPI'], null], ['/', ['feature-state', 'casesPI'], 0.5], 1],
-              16, ['case', ['!=', ['feature-state', 'casesPI'], null], ['/', ['feature-state', 'casesPI'], 0.05], 1]
+						4, ['case', ['!=', ['feature-state', 'casesPI'], null], ['/', ['feature-state', 'casesPI'], 0.9], 1],
+						8, ['case', ['!=', ['feature-state', 'casesPI'], null], ['/', ['feature-state', 'casesPI'], 0.7], 1],
+						16, ['case', ['!=', ['feature-state', 'casesPI'], null], ['/', ['feature-state', 'casesPI'], 0.09], 1]
             ],
-					"circle-opacity": 0.9,
+					"circle-opacity": 1,
 					"circle-stroke-color": "black",
 					"circle-stroke-width": 3,
-					"circle-color": "rgba(255,255,255,0)"
+					'circle-color':
+            ['case',
+              ['!=', ['feature-state', 'casesPI'], null],
+              [
+                'interpolate', ['linear'],
+                ['feature-state', 'cases'],
+                0, '#ef6548',
+								(maxvalue/10), '#d7301f',
+                maxvalue, '#990000'
+              ],
+              '#FFFFFF'
+            ]
 				},
 				filter: ["==", "areacd", ""]
 			},
