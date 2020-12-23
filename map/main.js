@@ -33,11 +33,14 @@ function ready(error, featureService /*geogbound, geog*/) {
 			casesMar: feature[casesfield],
 			casesApr: feature[casesfield],
 			casesMay: feature[casesfield],
-			casesJune: feature[casesfield]
+			casesJune: feature[casesfield],
+			date: feature.date
 
 		};
 	});
 
+	var parseDate = d3.timeParse("%Y-%m-%d");
+	var myFormat = d3.timeFormat("%d %B");
 
 	dataAll = {};
 	dataMar = {};
@@ -58,11 +61,14 @@ function ready(error, featureService /*geogbound, geog*/) {
 	const cases = [];
 	const cases2 = [];
 	const areanmhc = [];
+	const date = [];
+
 
 	data.forEach(function(d, i) {
 			cases[d.areacd] = +d.cases;
 			areanmhc[d.areacd] = d.areanmhc;
 			cases2[i] = +d.cases;
+			date[d.areacd] = d.date;
 			areabyid[d.areacd] = d.areanm;
 
 	});
@@ -353,30 +359,31 @@ setLegend()
 	}
 
 	function setAxisVal(areanm, areanmhc, areacd) {
+
 		d3.select("#keyvalue")
 			.style("font-weight", "bold")
 			.html(function() {
 				if(parseInt(d3.select("body").style("width")) <= 600) {
 					if (dataAll[areacd] == 0) {
-						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br> <3 cases in the last 7 days*";
+						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br> <3 cases in the 7 days to " + myFormat(parseDate(date[areacd]));
 					} else if (!isNaN(dataAll[areacd])) {
 						//console("I'm here")
-						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br>" + dataAll[areacd] + " cases in the last 7 days*";
+						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br>" + dataAll[areacd] + " cases in the 7 days to " + myFormat(parseDate(date[areacd]));
 					} else {
-						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br>" + dataAll[areacd] + " cases in the last 7 days*";
+						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br>" + dataAll[areacd] + " cases in the 7 days to " + myFormat(parseDate(date[areacd]));
 					}
 				} else {
 					if (dataAll[areacd] == 0) {
-						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br> <3 cases in the last 7 days*";
-					} else if (!isNaN(dataAll[areacd])) {
+						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br> <3 cases in the 7 days to " + myFormat(parseDate(date[areacd]));
 						//console("I'm here")
-						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br>" + dataAll[areacd] + " cases in the last 7 days*";
+						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br>" + dataAll[areacd] + " cases in the 7 days to " + myFormat(parseDate(date[areacd]));
 					} else {
-						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br>" + dataAll[areacd] + " cases in the last 7 days*";
+						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br>" + dataAll[areacd] + " cases in the 7 days to " + myFormat(parseDate(date[areacd]));
 					}
 				}
 
 			});
+
 
 		d3.select("#keyvaluehidden")
 			.attr("aria-live","polite")
