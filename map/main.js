@@ -364,7 +364,7 @@ setLegend()
 			.style("font-weight", "bold")
 			.html(function() {
 				if(parseInt(d3.select("body").style("width")) <= 600) {
-					if (dataAll[areacd] == 0) {
+					if (typeof(dataAll[areacd]) == "undefined"){
 						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br> <3 cases in the 7 days to " + myFormat(parseDate(date[areacd]));
 					} else if (!isNaN(dataAll[areacd])) {
 						//console("I'm here")
@@ -373,7 +373,7 @@ setLegend()
 						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br>" + dataAll[areacd] + " cases in the 7 days to " + myFormat(parseDate(date[areacd]));
 					}
 				} else {
-					if (dataAll[areacd] == 0) {
+					if (typeof(dataAll[areacd]) == "undefined"){
 						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br> <3 cases in the 7 days to " + myFormat(parseDate(date[areacd]));
 						//console("I'm here")
 						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br>" + dataAll[areacd] + " cases in the 7 days to " + myFormat(parseDate(date[areacd]));
