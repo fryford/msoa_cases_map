@@ -73,6 +73,7 @@ function ready(error, featureService /*geogbound, geog*/) {
 
 	});
 
+	lastdate = data[0].date;
 
 	var maxvalue = d3.max(cases2);
 
@@ -365,7 +366,7 @@ setLegend()
 			.html(function() {
 				if(parseInt(d3.select("body").style("width")) <= 600) {
 					if (typeof(dataAll[areacd]) == "undefined"){
-						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br> <3 cases in the 7 days to " + myFormat(parseDate(date[areacd]));
+						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br> <3 cases in the 7 days to " + myFormat(parseDate(lastdate));
 					} else if (!isNaN(dataAll[areacd])) {
 						//console("I'm here")
 						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br>" + dataAll[areacd] + " cases in the 7 days to " + myFormat(parseDate(date[areacd]));
@@ -374,7 +375,7 @@ setLegend()
 					}
 				} else {
 					if (typeof(dataAll[areacd]) == "undefined"){
-						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br> <3 cases in the 7 days to " + myFormat(parseDate(date[areacd]));
+						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br> <3 cases in the 7 days to " + myFormat(parseDate(lastdate));
 						//console("I'm here")
 						return areanmhc + "<br><span id='msoacodetext'>MSOA " + areanm + "</span><br>" + dataAll[areacd] + " cases in the 7 days to " + myFormat(parseDate(date[areacd]));
 					} else {
